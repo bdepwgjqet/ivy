@@ -49,7 +49,7 @@ class DbmvSpider(scrapy.Spider):
                 yield scrapy.Request(nurl, callback=self.parse_movie_list, dont_filter=True)
 
     def parse_movie_detail(self, response):
-        rt_json = {
+        subject = {
             "url": response.url,
             "title": unicode.encode(response.css('title::text').extract()[0],'utf-8'),
             "cn_title": response.css('[property="v:itemreviewed"]::text').extract()
@@ -59,4 +59,4 @@ class DbmvSpider(scrapy.Spider):
         #filename = 'detail.html'
         output_folder = "output/"
         f = codecs.open(output_folder + filename,'wb',encoding='utf-8')
-        f.write(json.dumps(rt_json).decode('unicode_escape'))
+        f.write(json.dumps(subject).decode('unicode_escape').replace("\n",""))

@@ -8,7 +8,7 @@
 import scrapy
 
 
-class DoubanMovieItem(scrapy.Item):
+class IvyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
