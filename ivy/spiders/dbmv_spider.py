@@ -50,10 +50,6 @@ class DbmvSpider(scrapy.Spider):
                 yield scrapy.Request(nurl, callback=self.parse_movie_list, dont_filter=True)
 
     def parse_movie_detail(self, response):
-        subject = dbmv.extract(response)
+        item = dbmv.extract(response)
+        yield item
 
-        filename = response.url.split("/")[-2] + '.json'
-        #filename = 'detail.html'
-        output_folder = "output/"
-        f = codecs.open(output_folder + filename,'wb',encoding='utf-8')
-        f.write(json.dumps(subject).decode('unicode_escape').replace("\n",""))

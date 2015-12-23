@@ -7,8 +7,8 @@
 
 import scrapy
 
-
-class IvyItem(scrapy.Item):
+class DbmvItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    subject = scrapy.Field()
     pass
