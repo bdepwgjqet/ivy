@@ -62,7 +62,7 @@ NEWSPIDER_MODULE = 'ivy.spiders'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'ivy.pipelines.DbmvPipeline': 300,
+   'ivy.pipelines.DbmvPipeline': 300
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -85,5 +85,5 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 #DB
-MONGO_URI = "mongodb://spider:pntmdcg@127.0.0.1:27131
+MONGO_URI = "mongodb://spider:pntmdcg@127.0.0.1:27131"
 MONGO_DB = "scrapy"

@@ -52,4 +52,3 @@ class DbmvSpider(scrapy.Spider):
     def parse_movie_detail(self, response):
         item = dbmv.extract(response)
         yield item
-

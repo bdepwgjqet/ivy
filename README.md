@@ -1,3 +1,3 @@
 # ivy
 
-Crawler based on scrapy
+scrapy example
