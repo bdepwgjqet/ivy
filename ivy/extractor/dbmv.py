@@ -5,6 +5,8 @@ import scrapy
 import re
 from ivy.utils import listutils
 from ivy.items import DbmvItem
+import codecs
+import json
 
 def extract(response):
     '''Extractor for douban movie detail page
@@ -156,6 +158,7 @@ def extract(response):
     f = codecs.open(output_folder + filename,'wb',encoding='utf-8')
     f.write(json.dumps(subject).decode('unicode_escape').replace("\n",""))
 
-    item = DbmvItem()
-    item.subject = subject;
-    yield item
+    sid = re.search('(\d+)',response.url)
+    sid = sid.group(1) if sid else -1 
+    item = DbmvItem(_id=sid,subject=json.dumps(subject).decode('unicode_escape').replace("\n",""))
+    return item

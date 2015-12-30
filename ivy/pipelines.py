@@ -30,6 +30,7 @@ class DbmvPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        print "====================================================>"
-        self.db[self.collection_name].insert(dict(item))
+        data = dict(item)
+        if self.db[self.collection_name].find(data).count() == 0:
+            self.db[self.collection_name].insert(data)
         return item
