@@ -31,6 +31,8 @@ class DbmvPipeline(object):
 
     def process_item(self, item, spider):
         data = dict(item)
-        if self.db[self.collection_name].find(data).count() == 0:
+        if self.db[self.collection_name].find({'_id':data.get('_id')}).count() == 0:
             self.db[self.collection_name].insert(data)
+        else:
+            self.db[self.collection_name].update({'_id':data.get('_id')},data)
         return item

@@ -102,12 +102,38 @@ def extract(response):
     blocks = response.css('div.review')
     hot_reviews = []
     for i in range(len(blocks)):
+        review_title = ""
+        review_url = ""
+        review_author = ""
+        review_reply_num = ""
+        review_rating = ""
+        try:
+            review_title = response.css('div.review-hd').xpath('h3/a[@onclick]/text()').extract()[i]
+        except IndexError:
+            review_title = ""
+        try:
+            review_url = response.css('div.review-hd').xpath('h3/a[@onclick]/@href').extract()[i]
+        except IndexError:
+            review_url = ""
+        try:
+            review_author = response.css('div.review-hd-info a').xpath('text()').extract()[i]
+        except IndexError:
+            review_author = ""
+        try:
+            review_reply_num = response.css('div.review-short-ft a').xpath('text()').re('(\d+)')[i]
+        except IndexError:
+            review_reply_num = ""
+        try:
+            review_rating = int(response.css('div.review-hd-info span').xpath('@class').re('(\d+)')[i])/10
+        except IndexError:
+            review_rating = ""
+
         hot_reviews.append({
-            "title": response.css('div.review-hd').xpath('h3/a[@onclick]/text()').extract()[i],
-            "url": response.css('div.review-hd').xpath('h3/a[@onclick]/@href').extract()[i],
-            "author": response.css('div.review-hd-info a').xpath('text()').extract()[i],
-            "reply_num": response.css('div.review-short-ft a').xpath('text()').re('(\d+)')[i],
-            "rating": int(response.css('div.review-hd-info span').xpath('@class').re('(\d+)')[i])/10
+            "title": review_title,
+            "url": review_url,
+            "author": review_author,
+            "reply_num": review_reply_num,
+            "rating": review_rating
             })
 
     # final subject
