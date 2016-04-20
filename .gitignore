@@ -2,3 +2,6 @@ output
 *.out
 *.pyc
 *.swp
+*.tsv
+*.bak
+.ropeproject
