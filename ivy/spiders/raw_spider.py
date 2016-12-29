@@ -10,7 +10,7 @@ class RawSpider(scrapy.Spider):
     name = "raw"
     # allowed_domains = ["iqiyi.com", "douban.com", "letv.com", "qq.com"]
 
-    f = open('input/urllist.tsv')
+    f = open('input/yuweiurl.tsv')
     start_urls = [url.strip() for url in f.readlines()]
     """
     start_urls = [
